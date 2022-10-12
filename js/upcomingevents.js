@@ -17,7 +17,7 @@ function printCard(tarjetas) {
                 <a href="./moredetails.html" class="card-link">More details</a>
     </div>
     </div>
-    `;
+    `
     }
   }
 }

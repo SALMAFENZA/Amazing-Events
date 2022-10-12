@@ -18,6 +18,5 @@ function printCard(tarjetas) {    //esta funcion imprimira tarjetas
     </div>
     `}
     }
-
 }
 printCard(container) 
