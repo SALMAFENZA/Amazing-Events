@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="../Amazing-Events/assets/styles/style.css">
     <link rel="shortcut icon" href="./assets/img/carta-a.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -23,23 +24,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav fs-6 gap-3">
             <li class="nav-item">
-              <a class="nav-link d-flex align-content-center justify-content-center border border-danger rounded-pill" href="./index.html"
+              <a class="nav-link d-flex align-content-center justify-content-center border border-dark rounded-pill" href="./index.html"
                 href="./index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-content-center justify-content-center border border-danger  rounded-pill"
+              <a class="nav-link d-flex align-content-center justify-content-center border border-dark  rounded-pill"
                 href="./upcomingevents.html">Upcoming Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-content-center justify-content-center border border-danger rounded-pill"
+              <a class="nav-link d-flex align-content-center justify-content-center border border-dark rounded-pill"
                 href="./pastevents.html">Past Events </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-content-center justify-content-center border border-danger rounded-pill"
+              <a class="nav-link d-flex align-content-center justify-content-center border border-dark rounded-pill"
                 href="./contact.html"> Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-content-center justify-content-center border border-danger rounded-pill"
+              <a class="nav-link d-flex align-content-center justify-content-center border border-dark rounded-pill"
                 href="./stats.html"> Stats</a>
             </li>
           </ul>
@@ -47,42 +48,41 @@
       </nav>
     </header>
   
-    <div id="carouselExampleControls" class="carousel slide  data-bs-ride= carousel bg-danger bg-gradient">
-        <div class="carousel-inner width:100%  fs-1 d-flex align-content:center justify-content-center">
-            <div class="  carousel-item text-white " class="d-block w-100">
-                <p>Home
-                <p>
-            </div>
-            <div class="carousel-item text-white" class="d-block w-100">
-                <p>Future Events</p>
-            </div>
-            <div class="carousel-item text-white" class="d-block w-100">
-                <p>Past Events</p>
-            </div>
-            <div class="carousel-item text-white" class="d-block w-100">
-                <p>Contact</p>
-            </div>
-            <div class="carousel-item text-white active" class="d-block w-100">
-                <p">Stats</p>
-            </div>
+
+    <div id="carouselExampleControls" class="carousel slide contenedor" style="height:20em;"  data-bs-ride="carousel">
+      <div class="carousel-inner" style="height:100%;">
+        <div class="carousel-item active item-1">
+          <h2 class="fs-1 text-white carousel-caption m-5 p-5 ">Home<h2>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    </header>
+        <div class="carousel-item item-2">
+          <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
+        </div>
+        <div class="carousel-item item-3">
+        <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
+        </div>
+        <div class="carousel-item item-4">
+          <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
+        </div>
+        <div class="carousel-item item-5">
+         <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
+        </div>
+        <div class="carousel-item item-6">
+         <H2 class=" fs-1 text-white carousel-caption m-5 p-5">Home</H2>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     <main>
-        <div class="d-flex align-content:center justify-content-center mt-4 mb-5">
+        <div class="d-flex align-content:center justify-content-center mt-1 mb-5">
             <table class="border">
                 <thead>
-                    <tr class="fw-bold border bg-danger">
+                    <tr class="fw-bold border bg-dark">
                         <th colspan="3">Event statistics</th>
                     </tr>
                 </thead>
@@ -98,7 +98,7 @@
                         <td>|</td>
                         <td>|</td>
                     </tr>
-                    <tr class="fw-bold border bg-danger">
+                    <tr class="fw-bold border bg-dark">
                         <th colspan="3">Upcoming events statistics by category</th>
                     </tr>
                     <tr>
@@ -121,7 +121,7 @@
                         <td>|</td>
                         <td>|</td>
                     </tr>
-                    <tr class="fw-bold border bg-danger">
+                    <tr class="fw-bold border bg-dark">
                         <th colspan="3">Past Events statistic by category</th>
                     </tr>
                     <tr class="border">
@@ -162,7 +162,7 @@
     </main>
 
 
-    <footer class=" container-fluid border d-flex justify-content-around align-items-center bg-danger mt-5 text-white fixed-bottom">
+    <footer class=" container-fluid border d-flex justify-content-around align-items-center bg-white mt-1 text-dark fixed-bottom">
         <article class="navbar">
           <a class="navbar-brand" href="https://www.instagram.com/">
             <img src="./assets/img/instagramlogoone.png" alt="instagram" width="40" height="34">
@@ -174,7 +174,7 @@
             <img src="./assets/img/whatsapplogo.png" alt="Whatsapp" width="40" height="34">
           </a>
         </article>
-        <div class="fw-bold text-white mt-2">
+        <div class="fw-bold text-dark mt-1">
           <p>Hecho con Amor, Salma Fenza &#128151</p>
           <p>Cohort n°35/36 MINDHUB </p>
         </div>
