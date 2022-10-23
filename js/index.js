@@ -1,76 +1,65 @@
-let containerSearch = document.getElementById("searchJs");
-let containerImages = document.getElementById("containerImages");
-let categoriasDelCheckbox = document.getElementById("checkbox");
+let $busqueda = document.getElementById(`searchJs`);
+let $checkbox = document.getElementById(`checkboxJs`);
+let $tarjetas = document.getElementById(`containerImagesJs`);
+let events2;
+fetch("https:amazing-events.herokuapp.com/api/events")
+  .then((data) => data.json())
+  .then((res) => {
+    events2 = res.events;
+    crearCheckbox(events2, $checkbox);
+    imprimirCards(events2, $tarjetas);
+    $busqueda.addEventListener("keyup", filtrarCats);
+    $checkbox.addEventListener("change", filtrarCats);
+  })
+  .catch((error) => console.log(error));
 
-function imprimir(containerImages, array) {
-  array.forEach((evento) => {
-    containerImages.innerHTML += ` 
-    <div class="card d-flex align-self-center justify-content-center border border-dark rounded-end" style="width:18em; height:25em;">
-    <img src="${evento.image}"class="card-img-top img-fluid" style="height:150px;" alt="${evento.name}">
-    <div class="card-body">
-    <p class="card-text d-flex align-self-center justify-content-center">${evento.category}</p>
-        <h5 class="card-title d-flex align-self-center justify-content-center"> ${evento.name}</h5>
-        <p class="card-text d-flex align-self-center justify-content-center">${evento.description}</p>
-      </div>
-      <div class="card-body d-flex justify-content-between ">
-        <P class="p-3 border border-dark rounded-pill d-flex align-self-center justify-content-center"> ${evento.price}</P>
-        <a href="./moredetails.html" class="p-2 card-link border border-dark rounded-pill d-flex align-self-center justify-content-center">View more</a>
-      </div>
+function crearCheckbox(events2, contenedor) {
+  let fn = (e) => e.category; //esta linea proviene de un map
+  let categorias = new Set(events2.filter(fn).map(fn));
+  categorias.forEach((category) => {
+    contenedor.innerHTML += `<input class="form-check-input" value="${category}" type="checkbox" role="switch" id="${category}">
+    <label class="form-check-label" for="${category}" >${category} </label>
+  </input>
+`;});}
+
+function crearCard(events2, contenedor) {
+  let div = document.createElement("DIV");
+  contenedor.innerHTML += `
+  <div class="card d-flex align-self-center justify-content-center border border-dark rounded-end" style="width:18em; height:25em;">
+  <img src="${events2.image}"class="card-img-top img-fluid" style="height:150px;" alt="${events2.name}">
+  <div class="card-body">
+  <h5 class="card-title d-flex align-self-center justify-content-center"> ${events2.name}</h5>
+  <p class="p-1 border border-dark rounded-pill d-flex align-self-center justify-content-center fs-6"> ${events2.date}</p>
+  <p class="card-text d-flex align-self-center justify-content-center">${events2.description}</p>
     </div>
-    `;
-  });
+    <div class="card-body d-flex justify-content-between ">
+      <P class="p-3 border border-dark rounded-pill d-flex align-self-center justify-content-center"> ${events2.price}</P>
+      <a href="./moredetails.html" class="p-2 card-link border border-dark rounded-pill d-flex align-self-center 
+      justify-content-center">View more</a>
+    </div>
+  </div>
+  `;
+  return div;
 }
 
-imprimir(containerImages, events);
-
-let checks = Array.from(document.querySelectorAll(".checksito"))
-checks.forEach(check => check.addEventListener("click", filterCheck))
-
-function filterCheck(){
-  let checkboxChecked = checks.filter(check => check.checked).map(checkCategory => checkCategory.value)
-  if (checkboxChecked.length > 0 ){
-      let filteredCheckBox = events.filter(event => checkboxChecked.includes(event.category))
-      return filteredCheckBox
+function imprimirCards(events2, contenedor) {
+  contenedor.innerHTML = "";
+  if (events2.length > 0) {
+    let fragment = document.createDocumentFragment();
+    events2.forEach((events2) =>
+      fragment.appendChild(crearCard(events2, $tarjetas))
+    );
+    contenedor.appendChild(fragment);
+  } else {
+    contenedor.innerHTML =
+      "<h2> No hay categorias que coincidan con su busqueda, intente nuevamente </h2>";
   }
-  return events
 }
 
-imprimir(containerImages, filterCheck())
-
-containerSearch.addEventListener("keyup", (evento) => {
-  let datitaDelUsuario = evento.target.value;
-  let datitacheck = filterCheck();
-  let filtrado = datitacheck.filter((element) =>
-    element.category.toLowerCase().includes(datitaDelUsuario.toLowerCase())
-  );
-  containerImages.innerHTML = "";
-  imprimir(containerImages, filtrado);
-});
-
-let nombresDeCategorias = events.map((events) => events.category);
-let categoriasFinales = Array.from ( new Set([...nombresDeCategorias]))
-
-categoriasFinales.forEach(imprimirDos)
-
-
-function imprimirDos(category) {
-  categoriasDelCheckbox.innerHTML +=
-  `  
-   <div class = "form-check text-dark">
-     <label class="checksito form-check-label text-dark">${category}<input type= "checkbox" class="form-check-input" value="${category}"></label>
-   </div> `;
+function filtrarCats() {
+  let checked = [...document.querySelectorAll('input[type="checkbox"]:checked')].map((ele) => ele.value);
+  let filtradosPorCats = events2.filter((events2) => checked.includes(events2.category) || checked.lenght == 0);
+  let filtradosPorSearch = filtradosPorCats.filter((events2) =>
+    events2.name.toLowerCase().includes($busqueda.value.toLowerCase()));
+  imprimirCards(filtradosPorSearch, $tarjetas);
 }
-
-// let category = [];
-// categoriasFinales.forEach((elemento) => imprimirDos(elemento));
-// categoriasDelCheckbox.addEventListener("change", (evento) => {
-//   container.innerHTML = "";
-//   if (evento.target.checked) {
-//     mostrarLasCategs = events.filter((element) =>
-//       element.mostrarLasCategs.toLowerCase().includes(evento.target.value.toLowerCase())
-//     );
-//   //console.log(evento.target.value);
-//     printCards(mostrarLasCategs, contenedor)}
-//     if (listCheck.length === 0){
-//         printCards(events,contenedor)}})
-
