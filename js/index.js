@@ -15,16 +15,18 @@ fetch("https:amazing-events.herokuapp.com/api/events")
 
 function crearCheckbox(events2, contenedor) {
   let fn = (e) => e.category; //esta linea proviene de un map
-  let categorias = new Set(events2.filter(fn).map(fn));
+  let categorias = new Set(events2.filter(fn).map(fn)); // el set devuelve un value con el orden que se le asigne
   categorias.forEach((category) => {
     contenedor.innerHTML += `<input class="form-check-input" value="${category}" type="checkbox" role="switch" id="${category}">
     <label class="form-check-label" for="${category}" >${category} </label>
   </input>
-`;});}
+`;
+  });
+}
 
-function crearCard(events2, contenedor) {
+function crearCard(events2) {
   let div = document.createElement("DIV");
-  contenedor.innerHTML += `
+  div.innerHTML += `
   <div class="card d-flex align-self-center justify-content-center border border-dark rounded-end" style="width:18em; height:25em;">
   <img src="${events2.image}"class="card-img-top img-fluid" style="height:150px;" alt="${events2.name}">
   <div class="card-body">
@@ -46,9 +48,7 @@ function imprimirCards(events2, contenedor) {
   contenedor.innerHTML = "";
   if (events2.length > 0) {
     let fragment = document.createDocumentFragment();
-    events2.forEach((events2) =>
-      fragment.appendChild(crearCard(events2, $tarjetas))
-    );
+    events2.forEach((events2) => fragment.appendChild(crearCard(events2)));
     contenedor.appendChild(fragment);
   } else {
     contenedor.innerHTML =
@@ -57,9 +57,17 @@ function imprimirCards(events2, contenedor) {
 }
 
 function filtrarCats() {
-  let checked = [...document.querySelectorAll('input[type="checkbox"]:checked')].map((ele) => ele.value);
-  let filtradosPorCats = events2.filter((events2) => checked.includes(events2.category) || checked.lenght == 0);
+  let checked = [
+    ...document.querySelectorAll('input[type="checkbox"]:checked'),
+  ].map((ele) => ele.value); // i esta clickeado con el :checked me lo mapea(lo transfomra) y me trae lo vaores que coincidan y sean true
+  let filtradosPorCats = events2.filter(
+    (events2) => checked.includes(events2.category)
+  );
   let filtradosPorSearch = filtradosPorCats.filter((events2) =>
-    events2.name.toLowerCase().includes($busqueda.value.toLowerCase()));
+    events2.name.toLowerCase().includes($busqueda.value.toLowerCase())
+  );
   imprimirCards(filtradosPorSearch, $tarjetas);
+  if(checked.length === 0){
+    imprimirCards(events2, $tarjetas)
+  }
 }
