@@ -1,58 +1,61 @@
-let containerSearch = document.getElementById("searchJs");
-let container = document.getElementById("container"); // traemos al contenedor de las tarjetas
-let categoriasDelCheckbox = document.getElementById("checkbox");
+let moreDetails = document.getElementById("cardsImpresasJs");
+let eventos;
+fetch("https://amazing-events.herokuapp.com/api/events")
+  .then(data => data.json())
+  .then(data => {
+    dates = data.currentDate;
+    eventos = data.events;
+    imprimirId();})
+  .catch( error => console.log(error));
 
-function imprimir(container, array) {
-  array.forEach((evento) => {
-    // Primer paso, recorrer un array a seleccion.
-    container.innerHTML += ` 
-    <div class="card d-flex align-self-center justify-content-center border border-dark rounded-end" style="width:18em; height:25em;">
-    <img src="${evento.image}"class="card-img-top img-fluid" style="height:150px;" alt="${evento.name}">
-    <div class="card-body">
-    <p class="card-text d-flex align-self-center justify-content-center">${evento.category}</p>
-        <h5 class="card-title d-flex align-self-center justify-content-center"> ${evento.name}</h5>
-        <p class="card-text d-flex align-self-center justify-content-center">${evento.description}</p>
+function asistenciaImpresa(i, container) {
+  container.innerHTML += 
+  `
+  <div class=" row ">
+    <div class="col-md-6 p-5  ">
+    <img src="${(i, image)}" class="img-fluid rounded-end w-100% mx-5" alt="i.name">
+  </div>
+  <div class="col-md-4">
+  <div class="card-body ">
+    <h5 class="card-title d-flex align-content-center justify-content-center border border-dark rounded-pill">${i.name}</h5>
+    <p class="card-text">Date: ${i.date}</p>
+    <p class="card-text">Description: ${i.description}</p>
+    <P class="card-text">Category:${i.category}</P>
+    <p class="card text border-0">Place:${i.place} </p>
+    <p class="card-text">Capacity:${i.capacity}</p>
+    <p class="card-text">Assistance:${i.assistance}</p>
+    <p class="card-text">Price:>U$D${i.price}</p>     
+  </div>
+  </div>
+  `
+  ;}
+
+function estimadoImpreso(i, container) {
+      container.innerHTML +=
+      `
+  <div class=" row ">
+  <div class="col-md-6 p-5  ">
+    <img src="${i, image}" class="img-fluid rounded-end w-100% mx-5" alt="i.name"></div>
+  <div class="col-md-4">
+    <div class="card-body ">
+  <h5 class="card-title d-flex align-content-center justify-content-center border border-dark rounded-pill">${i.name}</h5>
+      <p class="card-text">Date: ${i.date}</p>
+      <p class="card-text">Description:${description} </p>
+      <P class="card-text">Category:${i.category}</P>
+      <p class="card text border-0">Place: ${i.place} </p>
+      <p class="card-text">Capacity:${i.capacity}</p>
+      <p class="card-text">Estimate:${i.estimate}</p>
+      <p class="card-text">Price:>U$D${i.price}</p>     
       </div>
-      <div class="card-body d-flex justify-content-between ">
-        <P class="p-3 border border-dark rounded-pill d-flex align-self-center justify-content-center"> ${evento.price}</P>
-        <a href="./moredetails.html" class="p-2 card-link border border-dark rounded-pill d-flex align-self-center justify-content-center">View more</a>
       </div>
-    </div>
-    `;
-  });
-}
+      `;}
 
-imprimir(container, events);
-containerSearch.addEventListener("keyup", (evento) => {
-  //el evento te captura el modo de objeto el elemento
-  let datitaDelUsuario = evento.target.value;
-  let filtrado = events.filter((element) =>
-    element.name.toLowerCase().includes(datitaDelUsuario.toLowerCase())
-  );
-  container.innerHTML = "";
-  imprimir(container, filtrado);
-});
+      async function imprimirId(){
+      let filtrarDetails = [];
+      let detalleId = location.search.slice(4);
 
-let nombresDeCategorias = events.map((events) => events.category);
-let categoriasFinales = new Set(nombresDeCategorias);
-let mostrarLasCategs = Array.from(categoriasFinales);
-
-function imprimirDos(array) {
-  categoriasDelCheckbox.innerHTML += `  
-   <div class = "form-check text-dark">
-     <label class="form-check-label text-dark">${array}<input type= "checkbox" class="form-check-input" value="${array}"></label>
-   </div> `;
-}
-let categoria = [];
-mostrarLasCategs.forEach((elemento) => imprimirDos(elemento));
-categoriasDelCheckbox.addEventListener("change", (evento) => {
-  container.innerHTML = "";
-  if (evento.target.checked) {
-    categoria = events.filter((element) =>
-      element.category.toLowerCase().includes(evento.target.value.toLowerCase())
-    );
-    console.log(evento.target.value);
-    printCards(categoria, contenedor)}
-    if (listCheck.length === 0){
-        printCards(events,contenedor)}})
-
+      filtrarDetails = eventos.find(e => e._id === detalleId);
+      if(filtrarDetails.dates < dates){
+        asistenciaImpresa(filtrarDetails, moreDetails);
+      } else {
+        estimadoImpreso(filtrarDetails, moreDetails);}}
