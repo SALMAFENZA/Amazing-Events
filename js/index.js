@@ -2,11 +2,11 @@ let $busqueda = document.getElementById(`searchJs`);
 let $checkbox = document.getElementById(`checkboxJs`);
 let $tarjetas = document.getElementById(`containerImagesJs`);
 let events2;
-fetch("https://mind-hub.up.railway.app/amazing")
-  .then((data) => data.json())
-  .then((res) => {
-    events2 = res.events;
-    crearCheckbox(events2, $checkbox);
+fetch("https://mh-amazing.herokuapp.com/amazing")
+.then((data) => data.json())
+.then((res) => {
+  events2 = res.events;
+  crearCheckbox(events2, $checkbox);
     imprimirCards(events2, $tarjetas);
     $busqueda.addEventListener("keyup", filtrarCats);
     $checkbox.addEventListener("change", filtrarCats);
@@ -34,8 +34,8 @@ function crearCard(events2) {
   <p class="card-text d-flex align-self-center justify-content-center">${events2.description}</p>
     </div>
     <div class="card-body d-flex justify-content-between ">
-      <P class="p-3 border border-dark rounded-pill d-flex align-self-center justify-content-center"> ${events2.price}</P>
-      <a href="./moredetails.html" class="p-2 card-link border border-dark rounded-pill d-flex align-self-center 
+      <P class="p-3 border border-dark rounded-pill d-flex align-self-center justify-content-center">u$d ${events2.price}</P>
+      <a href="./moredetails.html?events=${events2.id}" class="p-2 card-link border border-dark rounded-pill d-flex align-self-center 
       justify-content-center">View more</a>
     </div>
   </div>

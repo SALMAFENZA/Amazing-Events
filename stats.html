@@ -48,44 +48,54 @@
       </nav>
     </header>
   
-
-    <div id="carouselExampleControls" class="carousel slide contenedor" style="height:20em;"  data-bs-ride="carousel">
-      <div class="carousel-inner" style="height:100%;">
-        <div class="carousel-item active item-1">
-          <h2 class="fs-1 text-white carousel-caption m-5 p-5 ">Home<h2>
-        </div>
-        <div class="carousel-item item-2">
-          <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
-        </div>
-        <div class="carousel-item item-3">
-        <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
-        </div>
-        <div class="carousel-item item-4">
-          <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
-        </div>
-        <div class="carousel-item item-5">
-         <h2 class="fs-1 text-white carousel-caption m-5 p-5">Home</h2>
-        </div>
-        <div class="carousel-item item-6">
-         <H2 class=" fs-1 text-white carousel-caption m-5 p-5">Home</H2>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    <main>
-        <div class="d-flex align-content:center justify-content-center mt-1"> 
-        <table id="tablasJs"  class="table" tabla> </table>
-        </div>
+    <main class="mb-4 mx-6">
+        <div class="d-flex align-content:center justify-content-center mt-5 mx-5 mb-6"> 
+          <table class="table">
+            <thead class="table-dark ">
+              <tr>
+                <th  colspan="3">Event statistics</th>
+              </tr>
+            </thead>
+            <tbody id="firstRow">
+              <tr>
+                <td class="semibold">
+                  Events with the highest percentage of attendance
+                </td>
+                <td class="semibold">
+                  Events with the lowest percentage of attendance
+                </td>
+                <td class="semibold">Events with larger capacity</td>
+              </tr>
+            </tbody>
+            <thead class="table-dark">
+              <tr>
+                <th colspan="3">Upcoming events statistics by category</th>
+              </tr>
+            </thead>
+            <tbody id="secondRow">
+              <tr>
+                <td class="semibold">Categories</td>
+                <td class="semibold">Revenues</td>
+                <td class="semibold">Percentage of attendance</td>
+              </tr>
+            </tbody>
+            <thead class="table-dark">
+              <tr>
+                <th colspan="3">Past events by category</th>
+              </tr>
+            </thead>
+            <tbody id="thirdRow">
+              <tr>
+                <td class="semibold">Categories</td>
+                <td class="semibold">Revenues</td>
+                <td class="semibold">Percentage of attendance</td>
+              </tr>
+            </tbody>
+          </table>
     </main>
 
 
-    <footer class=" container-fluid border d-flex justify-content-around align-items-center bg-white mt-1 text-dark fixed-bottom">
+    <footer class=" container-fluid border d-flex justify-content-around align-items-center bg-white  text-dark fixed-bottom mt-6">
         <article class="navbar">
           <a class="navbar-brand" href="https://www.instagram.com/">
             <img src="./assets/img/instagramlogoone.png" alt="instagram" width="40" height="34">
@@ -97,7 +107,7 @@
             <img src="./assets/img/whatsapplogo.png" alt="Whatsapp" width="40" height="34">
           </a>
         </article>
-        <div class="fw-bold text-dark mt-1">
+        <div class="fw-bold text-dark">
           <p>Hecho con Amor, Salma Fenza &#128151</p>
           <p>Cohort n°35/36 MINDHUB </p>
         </div>
